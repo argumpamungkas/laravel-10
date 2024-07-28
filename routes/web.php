@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\JurusanController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,6 +28,6 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('/about', function () {
-    return view('about');
-});
+// parameter ke 2 tergantung dari nama function yang ada di controllernya
+Route::get('/students', [StudentController::class, 'index']);
+Route::get('/jurusan', [JurusanController::class, 'index']);
