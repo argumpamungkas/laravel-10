@@ -3,18 +3,57 @@
 namespace App\Http\Controllers;
 
 use App\Models\Student;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class StudentController extends Controller
 {
     public function index()
     {
-        // query builder
         // query raw
-        // dd() = var_dump()
         // eloquent ORM (recommend):
-        $student = Student::all();
+        // dd() = var_dump()
+        // $student = Student::all();
+        // Student::create([
+        //     'nim' => '361801009',
+        //     'name' => 'Puti',
+        //     'gender' => 'P',
+        //     'jurusan_id' => 2,
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]);
+        //UPDATE
+        // Student::find(30)->update([
+        //     'name' => 'iput',
+        //     'jurusan_id' => 3,
+        // ]);
+        // DELETE
+        // Student::find(29)->delete();
+
+        //QUERY BUILDER
+        // $student = DB::table('students')->get(); // SELECT
+        // insert data
+        // $student = DB::table('students')->insert([
+        //     'nim' => '361801001',
+        //     'name' => 'Alkhalifi',
+        //     'gender' => 'L',
+        //     'jurusan_id' => 1,
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]);
+        // UPDATE
+        // $student = DB::table('students')
+        //     ->where('id', 28)
+        //     ->update([
+        //         'name' => 'Arshakka',
+        //         'jurusan_id' => 2
+        //     ]);
+        //DELETE
+        // $student = DB::table('students')->where('id', 30)->delete();
         // dd($student);
+
+        $student = Student::all();
         return view(
             '/students',
             ['studentList' => $student]

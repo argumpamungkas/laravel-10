@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     use HasFactory;
-    protected $table = 'jurusan_table';
+    protected $table = 'jurusan';
 }

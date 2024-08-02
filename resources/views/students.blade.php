@@ -5,23 +5,24 @@
 @section('content')
 
 <h1>Ini adalah Student</h1>
-<ol>
-    @foreach ($studentList as $student)
-    @if ($student->jurusan_id == 1)
-    <li>
-        {{$student->nim}} | {{$student->name}} | Sistem Informasi
-    </li>
-    @elseif ($student->jurusan_id == 2)
-    <li>
-        {{$student->nim}} | {{$student->name}} | Teknik Informatika
-    </li>
-    @else
-    <li>
-        {{$student->nim}} | {{$student->name}} | Manajemen Informatika
-    </li>
-
-    @endif
-    @endforeach
-</ol>
-
+<table>
+    <thead>
+        <tr>
+            <td>No.</td>
+            <td>NIM</td>
+            <td>Name</td>
+            <td>Jurusan</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($studentList as $student )
+        <tr>
+            <td>{{$loop->iteration}}</td>
+            <td>{{$student->nim}}</td>
+            <td>{{$student->name}}</td>
+            <td>{{$student->jurusan_id}}</td>
+        </tr>
+        @endforeach
+    </tbody>
+</table>
 @endsection

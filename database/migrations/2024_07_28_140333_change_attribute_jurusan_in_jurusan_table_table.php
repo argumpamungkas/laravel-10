@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('jurusan_table', function (Blueprint $table) {
+        Schema::table('jurusan', function (Blueprint $table) {
             $table->string('name', 100)->after('id')->require()->change();
         });
     }
@@ -21,7 +21,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('jurusan_table', function (Blueprint $table) {
+        Schema::table('jurusan', function (Blueprint $table) {
             $table->string('change', 10)->require()->after('id')->change();
         });
     }
