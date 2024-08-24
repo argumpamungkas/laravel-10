@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Student extends Model
@@ -26,8 +27,16 @@ class Student extends Model
         'updated_at',
     ];
 
-    // public function jurusans(): HasOne
-    // {
-    //     return $this->hasOne(Jurusan::class, 'foreign_key');
-    // }
+    //RELATIONSHIP TABLE
+    // one to many inverse (many to one)
+    function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class, 'jurusan_id', 'id'); // (namaModel, foreign key dari Student, key dari jurusan);
+    }
+
+    // many to many
+    function extras()
+    {
+        return $this->belongsToMany(Extracurricular::class, 'student_extra', 'student_id', 'extra_id'); // (namaModel, nama table pivot, foreign key dari Student, key dari jurusan);
+    }
 }

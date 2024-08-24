@@ -53,10 +53,27 @@ class StudentController extends Controller
         // $student = DB::table('students')->where('id', 30)->delete();
         // dd($student);
 
-        $student = Student::all();
+        $student = Student::get(); //RELATIONSHIP 1 (LAZY LOADING BISA MENGGUNAKAN INI)
+        // CARA RELATIONSHIP KE 2 dibawah
+        // $student = Student::with([
+        //     'jurusan.lecturers', // nested relationship
+        //     'extras'
+        // ])->get(); // EAGER LOADING
         return view(
-            '/students',
+            'students',
             ['studentList' => $student]
+        );
+    }
+
+    function show($id)
+    {
+        $student = Student::with([
+            'jurusan.lecturers',
+            'extras',
+        ])->findOrFail($id);
+        return view(
+            'student-detail',
+            ['student' => $student]
         );
     }
 }

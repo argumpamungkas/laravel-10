@@ -5,13 +5,18 @@
 @section('content')
 
 <h1>Ini adalah Student</h1>
-<table>
+<table class="table">
     <thead>
         <tr>
-            <td>No.</td>
-            <td>NIM</td>
-            <td>Name</td>
-            <td>Jurusan</td>
+            <th>No.</th>
+            <th>NIM</th>
+            <th>Name</th>
+            {{-- <th>Gender</th> --}}
+            {{-- <th>Jurusan</th> --}}
+            {{-- <th>Lecture</th> --}}
+            {{-- <th>Jurusan_id</th> --}}
+            {{-- <th>Extracurricular</th> --}}
+            <th>Actions</th>
         </tr>
     </thead>
     <tbody>
@@ -20,7 +25,22 @@
             <td>{{$loop->iteration}}</td>
             <td>{{$student->nim}}</td>
             <td>{{$student->name}}</td>
-            <td>{{$student->jurusan_id}}</td>
+            {{-- <td>{{$student->gender == 'L' ? 'Laki-Laki' : 'Perempuan'}}</td> --}}
+            {{-- <td>{{$student->jurusan_id}}</td> --}}
+            {{-- <td>{{$student->jurusan['name']}}</td> CARA PERTAMA RELATIONSHIP--}}
+            {{-- CARA KEDUA DIBAWAH --}}
+            {{-- <td>{{$student->jurusan['name']}}</td> --}}
+            {{-- <td>{{$student->jurusan->lecturers->name}}</td> --}}
+            {{-- <td>
+                @foreach ($student->extras as $extra)
+                - {{$extra->name}} <br>
+                @endforeach
+            </td> --}}
+            <td>
+                <a href="/student/{{$student->id}}">
+                    <button class="btn btn-outline-info">Detail</button>
+                </a>
+            </td>
         </tr>
         @endforeach
     </tbody>

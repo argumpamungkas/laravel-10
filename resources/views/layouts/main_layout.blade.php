@@ -30,6 +30,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/jurusan">Jurusan</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/extracurricular">Extracurricular</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/lecturer">Lecturer</a>
+                    </li>
                 </ul>
                 <span class="navbar-text">
                     Argumelar Pamungkas

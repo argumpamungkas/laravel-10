@@ -9,10 +9,20 @@ class JurusanController extends Controller
 {
     function index()
     {
-        $jurusan = Jurusan::all();
+        // $jurusan = Jurusan::with(['students', 'lecturers'])->get();
+        $jurusan = Jurusan::get();
         return view(
             'jurusan',
             ['jurusanList' => $jurusan]
+        );
+    }
+
+    function show($id)
+    {
+        $jurusan = Jurusan::with(['students', 'lecturers'])->findOrFail($id);
+        return view(
+            'jurusan-detail',
+            ['jurusan' => $jurusan]
         );
     }
 }
