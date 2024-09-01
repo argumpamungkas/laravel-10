@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Jurusan extends Model
 {
     use HasFactory;
-    protected $table = 'jurusans';
+    // protected $table = 'jurusans';
 
     // one to many
     public function students()

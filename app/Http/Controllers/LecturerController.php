@@ -16,7 +16,10 @@ class LecturerController extends Controller
     }
     function show($id)
     {
-        $lecturer = Lecturer::findOrFail($id);
+        $lecturer = Lecturer::with([
+            'jurusans',
+            'jurusans.students',
+        ])->findOrFail($id);
         return view('lecturer-detail', [
             'lecturer' => $lecturer
         ]);

@@ -14,8 +14,8 @@ class Lecturer extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function jurusan()
+    public function jurusans()
     {
-        return $this->hasOne(Jurusan::class, 'jurusan_id', 'id');
+        return $this->hasOne(Jurusan::class, 'lecturer_id', 'id');
     }
 }

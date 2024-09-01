@@ -4,8 +4,25 @@
 
 @section('content')
 
-<h2>Ini adalah detail Lecture {{$lecture->name}}</h2>
+<h2>Ini adalah detail Lecture {{$lecturer->name}}</h2>
 
-<p>{{$lecturer}}</p>
+<table class="table">
+    <thead>
+        {{-- <th>No</th> --}}
+        <th>Jurusan</th>
+        <th>Mahasiswa</th>
+    </thead>
+    <tbody>
+        <tr>
+            {{-- <td>{{$loop->iteration}}</td> --}}
+            <td>{{$lecturer->jurusans->name}}</td>
+            <td>
+                @foreach ( $lecturer->jurusans->students as $lecture)
+                {{$loop->iteration}}. {{$lecture->name}}<br>
+                @endforeach
+            </td>
+        </tr>
+    </tbody>
+</table>
 
 @endsection
