@@ -33,6 +33,8 @@ Route::get('/', function () {
 // parameter ke 2 tergantung dari nama function yang ada di controllernya
 Route::get('/students', [StudentController::class, 'index']);
 Route::get('/student/{id}', [StudentController::class, 'show']); // detail
+Route::get('/student-add', [StudentController::class, 'create']); // add
+Route::post('/student', [StudentController::class, 'store']); // add
 
 Route::get('/jurusan', [JurusanController::class, 'index']);
 Route::get('/jurusan/{id}', [JurusanController::class, 'show']);

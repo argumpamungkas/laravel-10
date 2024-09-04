@@ -1,10 +1,15 @@
 @extends('layouts.main_layout')
 
-@section('title', 'Extracurricular')
+@section('title', 'Extracurriculars')
 
 @section('content')
 
 <h1>Extracurricular</h1>
+
+<div class="mt-4 mb-4">
+    <a href="" class="btn btn-primary">Add Data</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>

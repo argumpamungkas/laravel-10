@@ -11,6 +11,7 @@ class Student extends Model
 {
     use HasFactory;
 
+
     // PENGGUNAAN DIBAWAH JIKA:
     //protected $table = 'my_students'; // digunakan selama nama tablenya bukan plural
     //protected $primaryKey = 'std_id'; // digunakan jika primarykeynya bukan id
@@ -18,13 +19,14 @@ class Student extends Model
     //public $timestamps = false; // jika dalam table tidak ada created_at dan updated_at
 
     // insert data menggunakan eloquent harus menyertakan fillable berdasarkan column nya
+    // ini juga digunakan untuk penggunaan insert dengan mass assignment
     protected $fillable = [
         'nim',
         'name',
         'gender',
         'jurusan_id',
-        'created_at',
-        'updated_at',
+        // 'created_at',
+        // 'updated_at',
     ];
 
     //RELATIONSHIP TABLE

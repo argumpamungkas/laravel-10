@@ -4,7 +4,12 @@
 
 @section('content')
 
-<h1>Ini adalah Student</h1>
+<h1>Student</h1>
+
+<div class="mt-4 mb-4">
+    <a href="/student-add" class="btn btn-primary">Add Data</a>
+</div>
+
 <table class="table">
     <thead>
         <tr>

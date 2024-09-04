@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Jurusan;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -60,7 +61,7 @@ class StudentController extends Controller
         //     'extras'
         // ])->get(); // EAGER LOADING
         return view(
-            'students',
+            'students/students',
             ['studentList' => $student]
         );
     }
@@ -72,8 +73,34 @@ class StudentController extends Controller
             'extras',
         ])->findOrFail($id);
         return view(
-            'student-detail',
+            'students/student-detail',
             ['student' => $student]
         );
+    }
+
+    function create()
+    {
+        // dd("INI ADD STUDENT");
+        // $jurusans = Jurusan::all(); // PENGAMBILAN SEMUA COLUMN NYA
+        $jurusans = Jurusan::select('id', 'name')->get();
+        return view('students/student-add', ['jurusans' => $jurusans]);
+    }
+
+    function store(Request $request)
+    {
+        //CARA PERTAMA
+        // $student = new Student;
+        // $student->nim = $request->nim;
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->jurusan_id = $request->jurusan_id;
+        // $student->save();
+
+        //CARA KEDUA MASS ASSIGNMENT CUMAN TAMBAH SYARAT DI MODEL UNTUK MEMBATASI MANA SAJA YANG DITAMBAH KE KOLOM
+        // $student = Student::create([])
+        $student = Student::create($request->all());
+
+
+        return redirect('/students');
     }
 }
