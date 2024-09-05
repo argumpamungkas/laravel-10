@@ -98,9 +98,36 @@ class StudentController extends Controller
 
         //CARA KEDUA MASS ASSIGNMENT CUMAN TAMBAH SYARAT DI MODEL UNTUK MEMBATASI MANA SAJA YANG DITAMBAH KE KOLOM
         // $student = Student::create([])
-        $student = Student::create($request->all());
+        Student::create($request->all());
 
 
+        return redirect('/students');
+    }
+
+    function edit($id)
+    {
+        $student = Student::with([
+            'jurusan',
+        ])->findOrFail($id);
+        $jurusans = Jurusan::select('id', 'name')->where('id', '!=', $student->jurusan_id)->get();
+        return view('students/student-edit', [
+            // 'request' => $request->all(),
+            'jurusans' => $jurusans,
+            'student' => $student,
+        ]);
+    }
+
+    function update(Request $request, $id)
+    {
+        // dd($request->all());
+        $student = Student::findOrFail($id);
+        // $student->nim = $request->nim;
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->jurusan_id = $request->jurusan_id;
+        // $student->save();
+        $student->update($request->all());
+        // Student::where('id', $id)->update($request->all());
         return redirect('/students');
     }
 }

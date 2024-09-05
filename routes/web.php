@@ -35,6 +35,8 @@ Route::get('/students', [StudentController::class, 'index']);
 Route::get('/student/{id}', [StudentController::class, 'show']); // detail
 Route::get('/student-add', [StudentController::class, 'create']); // add
 Route::post('/student', [StudentController::class, 'store']); // add
+Route::get('/student-edit/{id}', [StudentController::class, 'edit']); // edit
+Route::put('/student/{id}', [StudentController::class, 'update']); // update
 
 Route::get('/jurusan', [JurusanController::class, 'index']);
 Route::get('/jurusan/{id}', [JurusanController::class, 'show']);

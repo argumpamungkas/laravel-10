@@ -45,6 +45,9 @@
                 <a href="/student/{{$student->id}}">
                     <button class="btn btn-outline-info">Detail</button>
                 </a>
+                <a href="student-edit/{{$student->id}}">
+                    <button class="btn btn-warning">Edit</button>
+                </a>
             </td>
         </tr>
         @endforeach
