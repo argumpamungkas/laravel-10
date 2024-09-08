@@ -147,17 +147,27 @@ class StudentController extends Controller
         return redirect('/students');
     }
 
-    function delete(Request $request, $id)
+    function delete($id)
     {
-        // dd($request->all());
         $student = Student::findOrFail($id);
-        // $student->nim = $request->nim;
-        // $student->name = $request->name;
-        // $student->gender = $request->gender;
-        // $student->jurusan_id = $request->jurusan_id;
-        // $student->save();
+        return view('students/student-delete', [
+            'student' => $student,
+        ]);
+    }
+
+    function destroy($id)
+    {
+        $student = Student::findOrFail($id);
         $student->delete();
-        // Student::where('id', $id)->update($request->all());
+
+        if ($student) {
+            Session::flash('status', 'success');
+            Session::flash('message', "berhasil dihapus");
+        } else {
+            Session::flash('status', 'failed');
+            Session::flash('message', "gagal dihapus");
+        }
+
         return redirect('/students');
     }
 }

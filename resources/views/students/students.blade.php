@@ -56,7 +56,7 @@
                     <a href="student-edit/{{$student->id}}" class="btn btn-warning">
                         Edit
                     </a>
-                    <a href="" class="btn btn-danger">
+                    <a href="student-delete/{{$student->id}}" class="btn btn-danger" data-bs-target="#modal-delete">
                         Delete
                     </a>
                 </td>
@@ -64,5 +64,4 @@
             @endforeach
         </tbody>
     </table>
-</div>
-@endsection
+    @endsection
