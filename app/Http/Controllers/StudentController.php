@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StudentCreateRequest;
 use App\Models\Jurusan;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Session;
 
 class StudentController extends Controller
 {
@@ -86,7 +88,7 @@ class StudentController extends Controller
         return view('students/student-add', ['jurusans' => $jurusans]);
     }
 
-    function store(Request $request)
+    function store(StudentCreateRequest $request)
     {
         //CARA PERTAMA
         // $student = new Student;
@@ -98,8 +100,22 @@ class StudentController extends Controller
 
         //CARA KEDUA MASS ASSIGNMENT CUMAN TAMBAH SYARAT DI MODEL UNTUK MEMBATASI MANA SAJA YANG DITAMBAH KE KOLOM
         // $student = Student::create([])
-        Student::create($request->all());
 
+        // JIKA VALIDATION NYA TIDAK MENGGUNAKAN FILE EXTERNAL
+        // $validated = $request->validate([
+        //     'nim' => 'unique:students|max:9',
+        // ]);
+
+        $student = Student::create($request->all());
+
+        if ($student) {
+            // $request->session()->flash('status', 'Sukses add student');
+            Session::flash('status', 'success');
+            Session::flash('message', "$request->name berhasil ditambahkan");
+        } else {
+            Session::flash('status', 'failed');
+            Session::flash('message', "$request->name gagal ditambahkan");
+        }
 
         return redirect('/students');
     }
@@ -127,6 +143,20 @@ class StudentController extends Controller
         // $student->jurusan_id = $request->jurusan_id;
         // $student->save();
         $student->update($request->all());
+        // Student::where('id', $id)->update($request->all());
+        return redirect('/students');
+    }
+
+    function delete(Request $request, $id)
+    {
+        // dd($request->all());
+        $student = Student::findOrFail($id);
+        // $student->nim = $request->nim;
+        // $student->name = $request->name;
+        // $student->gender = $request->gender;
+        // $student->jurusan_id = $request->jurusan_id;
+        // $student->save();
+        $student->delete();
         // Student::where('id', $id)->update($request->all());
         return redirect('/students');
     }
